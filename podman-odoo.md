@@ -42,3 +42,23 @@ d535316181b0  docker.io/library/odoo:latest            odoo        11 seconds ag
 [root@localhost ~]# podman pod start clienteodoo01
 ```
 
+Creacion de servicio de Odoo Cliente 01
+
+```
+[root@localhost ~]# vi /etc/systemd/system/clienteodoo01.service
+[root@localhost ~]# cat /etc/systemd/system/clienteodoo01.service
+[Unit]
+Description=Cliente 01 Odoo container
+Wants=syslog.service
+[Service]
+Restart=always
+ExecStart=/usr/bin/podman pod start clienteodoo01
+ExecStop=/usr/bin/podman pod stop -t 10 clienteodoo01
+[Install]
+WantedBy=multi-user.target
+```
+
+
+[root@localhost ~]# systemctl enable clienteodoo01.service
+Created symlink /etc/systemd/system/multi-user.target.wants/clienteodoo01.service → /etc/systemd/system/clienteodoo01.service.
+[root@localhost ~]# systemctl start clienteodoo01.service
