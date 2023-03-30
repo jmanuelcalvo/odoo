@@ -1,5 +1,6 @@
 Ejecucion de un Odoo en un ambiente de contenedores con RHEL + Podman
 
+```
 [root@localhost ~]# podman run -d -e POSTGRES_USER=odoo -e POSTGRES_PASSWORD=odoo -e POSTGRES_DB=postgres --name db postgres:13
 ✔ docker.io/library/postgres:13
 Trying to pull docker.io/library/postgres:13...
@@ -22,9 +23,9 @@ Writing manifest to image destination
 Storing signatures
 ebd1a48d2125a15962ca04c5559ea4c4aa7968731f557e5421cb971174ab26a0
 [root@localhost ~]#
+```
 
-
-
+```
 [root@localhost ~]# mkdir /var/lib/clienteodoo01
 [root@localhost ~]# setenforce 0
 [root@localhost ~]# podman pod create -n clienteodoo01 -p 8069:8069
@@ -39,5 +40,5 @@ d535316181b0  docker.io/library/odoo:latest            odoo        11 seconds ag
 
 [root@localhost ~]# podman pod stop clienteodoo01
 [root@localhost ~]# podman pod start clienteodoo01
-
+```
 
